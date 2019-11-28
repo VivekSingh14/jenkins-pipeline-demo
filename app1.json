@@ -119,7 +119,210 @@
                 ],
                 "resources": {},
                 "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File"{
+  "apiVersion": "v1",
+  "kind": "Template",
+  "metadata": {
+    "name": "sample-application",
+    "labels": {
+      "app": "sample"
+    }
+  },
+  "objects": [
+    {
+      "kind": "ImageStream",
+      "apiVersion": "image.openshift.io/v1",
+      "metadata": {
+        "labels": {
+          "app": "sample"
+        },
+        "name": "sample-application"
+        "namespace": "cicd"
+      },
+      "spec": {
+        "lookupPolicy": {
+          "local": false
+        }
+      }
+    },
+    {
+      "kind": "BuildConfig",
+      "apiVersion": "build.openshift.io/v1",
+      "metadata": {
+        "labels": {
+          "app": "sample"
+          "buildConfig": "sample-application"
+        },
+        "name": "sample-application"
+        "namespace": "cicd"
+      },
+      "spec": {
+        "nodeSelector": null,
+        "output": {
+          "to": {
+            "kind": "ImageStreamTag",
+            "name": "sample-application:latest"
+          }
+        },
+        "postCommit": {},
+        "resources": {},
+        "serviceAccount": "builder",
+        "source": {
+          "git": {
+            "ref": "master",
+            "uri": "https://github.com/vicky1411/registrationmysql"
+          },
+          "type": "Git"
+        },
+        "strategy": {
+          "sourceStrategy": {
+            "from": {
+              "kind": "ImageStreamTag",
+              "name": "jboss-eap64-openshift:1.4",
+              "namespace": "openshift"
+            }
+          },
+          "type": "Source"
+        },
+        "triggeredBy": [
+          {
+            "message": "Build configuration change"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "DeploymentConfig",
+      "apiVersion": "apps.openshift.io/v1",
+      "metadata": {
+        "labels": {
+          "app": "sample"
+        },
+        "name": "sample-application"
+        "namespace": "cicd"
+      },
+      "spec": {
+        "replicas": 2,
+        "selector": {
+          "deploymentconfig": "sample-application"
+        },
+        "strategy": {
+          "activeDeadlineSeconds": 21600,
+          "resources": {},
+          "rollingParams": {
+            "intervalSeconds": 1,
+            "maxSurge": "25%",
+            "maxUnavailable": "25%",
+            "timeoutSeconds": 600,
+            "updatePeriodSeconds": 1
+          },
+          "type": "Rolling"
+        },
+        "template": {
+          "metadata": {
+            "creationTimestamp": null,
+            "labels": {
+              "app": "sample",
+              "deploymentconfig": "sample-application"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "image": "sample-application:latest",
+                "imagePullPolicy": "Always",
+                "name": "sample",
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "protocol": "TCP"
+                  }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
                 "terminationMessagePolicy": "File"
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": {},
+            "terminationGracePeriodSeconds": 30
+          }
+        },
+        "test": false,
+        "triggers": [
+          {
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "sample"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "name": "docker-registry.default.svc:5000/cicd/sample-application:latest"
+              },
+              "lastTriggeredImage": null
+            },
+            "type": "ImageChange"
+          },
+          {
+            "type": "ConfigChange"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "Service",
+      "apiVersion": "v1",
+      "metadata": {
+        "labels": {
+          "app": "sample"
+        },
+        "name": "sample-application"
+        "namespace": "cicd"
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "8080-tcp",
+            "port": 8080,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "deploymentconfig": "sample-application"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+      }
+    },
+    {
+      "kind": "Route",
+      "apiVersion": "route.openshift.io/v1",
+      "metadata": {
+        "labels": {
+          "app": "sample"
+        },
+        "name": "sample-application"
+        "namespace": "cicd"
+      },
+      "spec": {
+        "port": {
+          "targetPort": "8080-tcp"
+        },
+        "to": {
+          "kind": "Service",
+          "name": "sample-application",
+          "weight": 100
+        },
+        "wildcardPolicy": "None"
+      }
+    }
+  ]
+}
+
               }
             ],
             "dnsPolicy": "ClusterFirst",
