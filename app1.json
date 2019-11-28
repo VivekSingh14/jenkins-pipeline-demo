@@ -28,8 +28,7 @@
       "apiVersion": "build.openshift.io/v1",
       "metadata": {
         "labels": {
-          "app": "sample",
-          "buildConfig": "sample-application"
+          "app": "sample"
         },
         "name": "sample-application"
       },
@@ -136,7 +135,8 @@
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "sample-application:latest"
+                "name": "sample-application:latest",
+                "namespace": "cicd"
               },
               "lastTriggeredImage": null
             },
