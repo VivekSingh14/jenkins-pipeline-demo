@@ -139,7 +139,7 @@
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "docker-registry.default.svc:5000/cicd/sample-application:latest"
+                "name": "sample-application:latest"
               },
               "lastTriggeredImage": null
             },
