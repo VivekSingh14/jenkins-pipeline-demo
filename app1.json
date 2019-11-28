@@ -16,7 +16,6 @@
           "app": "sample"
         },
         "name": "sample-application"
-        "namespace": "cicd"
       },
       "spec": {
         "lookupPolicy": {
@@ -29,11 +28,10 @@
       "apiVersion": "build.openshift.io/v1",
       "metadata": {
         "labels": {
-          "app": "sample"
+          "app": "sample",
           "buildConfig": "sample-application"
         },
         "name": "sample-application"
-        "namespace": "cicd"
       },
       "spec": {
         "nodeSelector": null,
@@ -78,7 +76,6 @@
           "app": "sample"
         },
         "name": "sample-application"
-        "namespace": "cicd"
       },
       "spec": {
         "replicas": 2,
@@ -158,7 +155,7 @@
         "labels": {
           "app": "sample"
         },
-        "name": "sample-application"
+        "name": "sample-application",
         "namespace": "cicd"
       },
       "spec": {
@@ -184,7 +181,7 @@
         "labels": {
           "app": "sample"
         },
-        "name": "sample-application"
+        "name": "sample-application",
         "namespace": "cicd"
       },
       "spec": {
