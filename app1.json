@@ -13,7 +13,7 @@
       "apiVersion": "image.openshift.io/v1",
       "metadata": {
         "labels": {
-          "app": "sample"
+          "app": "sample-application"
         },
         "name": "sample-application"
       },
@@ -28,7 +28,7 @@
       "apiVersion": "build.openshift.io/v1",
       "metadata": {
         "labels": {
-          "app": "sample"
+          "app": "sample-application"
         },
         "name": "sample-application"
       },
@@ -83,7 +83,7 @@
       "apiVersion": "apps.openshift.io/v1",
       "metadata": {
         "labels": {
-          "app": "sample"
+          "app": "sample-application"
         },
         "name": "sample-application"
       },
@@ -98,7 +98,7 @@
             "imageChangeParams": {
               "automatic": true,
               "containerNames": [
-                "sample"
+                "sample-application"
               ],
               "from": {
                 "kind": "ImageStreamTag",
@@ -127,7 +127,7 @@
           "metadata": {
             "creationTimestamp": null,
             "labels": {
-              "app": "sample",
+              "app": "sample-application",
               "deploymentconfig": "sample-application"
             }
           },
@@ -136,7 +136,7 @@
               {
                 "image": "docker-registry.default.svc:5000/cicd/sample-application:latest",
                 "imagePullPolicy": "Always",
-                "name": "sample",
+                "name": "sample-application",
                 "ports": [
                   {
                     "containerPort": 8080,
@@ -164,7 +164,7 @@
       "apiVersion": "v1",
       "metadata": {
         "labels": {
-          "app": "sample"
+          "app": "sample-application"
         },
         "name": "sample-application",
         "namespace": "cicd"
@@ -190,7 +190,7 @@
       "apiVersion": "route.openshift.io/v1",
       "metadata": {
         "labels": {
-          "app": "sample"
+          "app": "sample-application"
         },
         "name": "sample-application",
         "namespace": "cicd"
