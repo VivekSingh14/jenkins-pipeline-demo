@@ -107,7 +107,7 @@
           "spec": {
             "containers": [
               {
-                "image": "sample-application:latest",
+                "image": "docker-registry.default.svc:5000/cicd/sample-application:latest",
                 "imagePullPolicy": "Always",
                 "name": "sample",
                 "ports": [
