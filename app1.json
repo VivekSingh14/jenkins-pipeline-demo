@@ -92,6 +92,24 @@
         "selector": {
           "deploymentconfig": "sample-application"
         },
+        "triggers": [
+          {
+            "type": "ImageChange",
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "sample"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "name": "sample-application:latest"
+              }
+            }
+          },
+          {
+            "type": "ConfigChange"
+          }
+        ],
         "strategy": {
           "activeDeadlineSeconds": 21600,
           "resources": {
@@ -114,24 +132,6 @@
             }
           },
           "spec": {
-             "triggers": [
-          {
-            "type": "ImageChange",
-            "imageChangeParams": {
-              "automatic": true,
-              "containerNames": [
-                "sample"
-              ],
-              "from": {
-                "kind": "ImageStreamTag",
-                "name": "sample-application:latest"
-              }
-            }
-          },
-          {
-            "type": "ConfigChange"
-          }
-        ],
             "containers": [
               {
                 "image": "docker-registry.default.svc:5000/cicd/sample-application:latest",
