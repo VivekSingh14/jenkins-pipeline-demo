@@ -131,7 +131,7 @@
           {
             "type": "ConfigChange"
           }
-        ]
+        ],
             "containers": [
               {
                 "image": "docker-registry.default.svc:5000/cicd/sample-application:latest",
