@@ -4,6 +4,7 @@
   "metadata": {
     "name": "sample-application",
     "labels": {
+      "template": "sample-application"
       "app": "sample-application"
     }
   },
