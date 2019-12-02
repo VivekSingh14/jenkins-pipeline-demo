@@ -114,6 +114,24 @@
             }
           },
           "spec": {
+             "triggers": [
+          {
+            "type": "ImageChange",
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "sample"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "name": "sample-application:latest"
+              }
+            }
+          },
+          {
+            "type": "ConfigChange"
+          }
+        ]
             "containers": [
               {
                 "image": "docker-registry.default.svc:5000/cicd/sample-application:latest",
