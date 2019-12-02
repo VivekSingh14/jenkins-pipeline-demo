@@ -3,11 +3,12 @@
   "kind": "Template",
   "metadata": {
     "name": "sample-application",
-    "labels": {
+    
+  },
+  "labels": {
       "template": "sample-application",
       "app": "sample-application"
-    }
-  },
+    },
   "objects": [
     {
       "kind": "ImageStream",
