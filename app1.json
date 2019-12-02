@@ -4,7 +4,7 @@
   "metadata": {
     "name": "sample-application",
     "labels": {
-      "app": "sample"
+      "app": "sample-application"
     }
   },
   "objects": [
