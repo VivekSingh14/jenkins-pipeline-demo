@@ -40,6 +40,14 @@
             "name": "sample-application:latest"
           }
         },
+          "triggers": [
+          {
+            "type": "ImageChange"
+          },
+          {
+            "type": "ConfigChange"
+          }
+        ],
         "postCommit": {
         },
         "resources": {
@@ -62,6 +70,7 @@
           },
           "type": "Source"
         },
+        
         "triggeredBy": [
           {
             "message": "Build configuration change"
