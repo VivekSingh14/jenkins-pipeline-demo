@@ -162,6 +162,63 @@
       }
     },
     {
+  "apiVersion": "apps.openshift.io/v1",
+  "kind": "DeploymentConfig",
+  "metadata": {
+    "labels": {
+      "app": "mysqlk8s"
+    },
+    "name": "mysqlk8s",
+    "namespace": "cicd"
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "app": "mysqlk8s"
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "mysqlk8s"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "MYSQL_ROOT_PASSWORD",
+                "value": "Gslab@123"
+              },
+              {
+                "name": "MYSQL_DATABASE",
+                "value": "test"
+              },
+              {
+                "name": "MYSQL_PASSWORD",
+                "value": "passwd"
+              },
+              {
+                "name": "MYSQL_USER",
+                "value": "user1"
+              }
+            ],
+            "image": "docker-registry.default.svc:5000/openshift/mysql@sha256:a34bbe925c220b28e11d1c5b130aa3ce28f6d95161b336f69b3c5b756542740a",
+            "imagePullPolicy": "IfNotPresent",
+            "name": "mysqlcontainer",
+            "ports": [
+              {
+                "containerPort": 3306,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+},
+    {
       "kind": "Service",
       "apiVersion": "v1",
       "metadata": {
