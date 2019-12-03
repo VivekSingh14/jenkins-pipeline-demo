@@ -217,9 +217,6 @@
       }
     }
   }
-      "dependsOn": [
-        "sample-application"
-        ]
 },
     {
       "kind": "Service",
