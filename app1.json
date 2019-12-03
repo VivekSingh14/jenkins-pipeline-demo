@@ -217,7 +217,7 @@
       }
     }
   }
-      "dependsOn" : [
+      "dependsOn": [
         "sample-application"
         ]
 },
