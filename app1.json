@@ -172,6 +172,11 @@
     "namespace": "cicd"
   },
   "spec": {
+    "triggers": [
+      {
+        "type": "ConfigChange"
+      }
+      ],
     "dependsOn": "sample-application",
     "replicas": 1,
     "selector": {
