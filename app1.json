@@ -251,6 +251,28 @@
       }
     },
     {
+  "apiVersion": "v1",
+  "kind": "Service",
+  "metadata": {
+    "name": "mysqlservice",
+    "namespace": "cicd"
+  },
+  "spec": {
+    "type": "NodePort",
+    "ports": [
+      {
+        "name": "http",
+        "protocol": "TCP",
+        "port": 3306,
+        "targetPort": 3306
+      }
+    ],
+    "selector": {
+      "app": "mysqlk8s"
+    }
+  }
+},
+    {
       "kind": "Route",
       "apiVersion": "route.openshift.io/v1",
       "metadata": {
