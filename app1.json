@@ -90,7 +90,6 @@
         "name": "sample-application"
       },
       "spec": {
-        "priorityClassName": "high-priority",
         "replicas": 2,
         "selector": {
           "deploymentconfig": "sample-application"
@@ -173,7 +172,6 @@
     "namespace": "cicd"
   },
   "spec": {
-    "priorityClassName": "low-priority",
     "triggers": [
       {
         "type": "ConfigChange"
